@@ -5,8 +5,11 @@ const morgan = require('morgan')
 const tourRouter = require('./routes/tourRouter');
 const userRouter = require('./routes/userRouter');
 
-app.use(morgan('dev'));
+if(process.env.NODE_ENV !== 'production'){          // process.env.<variables> is accessible once read in server.js
+    app.use(morgan('dev'));
+}
 app.use(express.json());
+
 app.use((req, res, next)=>{
     console.log('Hello from the middleware')
     req.requestTime = new Date().toISOString();
