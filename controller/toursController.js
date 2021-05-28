@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-tours= JSON.parse(
+const tours= JSON.parse(
     fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 );
 
@@ -27,18 +27,22 @@ exports.checkBody = (req, res, next)=>{             //middleware for createTour
     next();
 }             
 
-exports.getAllTours = (req,res) =>{             
+exports.getAllTours = (req,res) =>{   
+    const {id} = req.params
+    const tour = tours.find(el=> el.id === id)          
     res.status(200).json({
         status:'success',
         requested: req.requestTime,
         results: tours.length,
         data : {
-            tours
+            tour
         }
     })  
 };
 
 exports.getTourById = (req,res) =>{
+    const {id} = req.params;
+    const tour = tours.find(el=> el.id === id)
     res.status(200).json({
         status:'success',
         requested: req.requestTime,
@@ -51,9 +55,10 @@ exports.getTourById = (req,res) =>{
 
 exports.createTour = (req, res) =>{
     const id = tours[tours.length -1].id +1;
+    // eslint-disable-next-line prefer-object-spread
     const tour = Object.assign({id}, req.body);
     tours.push(tour)
-    fs.writeFile(`${__dirname}/dev-data/data/tours-simple.json`, JSON.stringify(tours), err=>{
+    fs.writeFile(`${__dirname}/dev-data/data/tours-simple.json`, JSON.stringify(tours), ()=>{
         res.status(200).json({
             status:'success',
             requested: req.requestTime,
