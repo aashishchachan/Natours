@@ -1,8 +1,4 @@
 node_modules/
-config.env
-.eslintrc.json
-.prettierrc
-
 # Logs
 logs
 *.log
