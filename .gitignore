@@ -1,4 +1,7 @@
 node_modules/
+.eslintrc.json
+.prettierrc
+
 # Logs
 logs
 *.log
