@@ -12,7 +12,7 @@ if(process.env.NODE_ENV !== 'production'){          // process.env.<variables> i
 app.use(express.json());
 
 app.use((req, res, next)=>{
-    console.log('Hello from the middleware')
+    console.log('Hello from the middleware 1👋')
     req.requestTime = new Date().toISOString();
     next();
 })
@@ -21,7 +21,6 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
 module.exports = app;
-
 
 
 

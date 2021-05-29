@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const app = require('./app');
