@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const app = require('./app');
 
 dotenv.config({ path: './config.env' });
 
+const app = require('./app');
 const port = process.env.PORT || 8000;
 const db =
   process.env.DATABASE_URL.replace('<PASSWORD>', process.env.USER_PASSWORD) ||
